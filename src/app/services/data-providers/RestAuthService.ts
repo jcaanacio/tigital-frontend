@@ -5,7 +5,6 @@ import {
   RegisteredUser,
 } from 'src/app/shared/models/RegisteredUser';
 import { TigitalError } from 'src/app/shared/utils/TigitalError';
-import { env } from 'src/app/shared/utils/Environment';
 
 export type ISignupResponse = IRegisteredUser;
 
@@ -24,7 +23,7 @@ export interface ILoginReponse {
 })
 export class RestAuthService implements IAuthDataSource {
   private _module = 'AuthRest';
-  private _url = env.API + '/api/v1/auth';
+  private _url = '/api/v1/auth';
   private axiosInstance = axios.create({
     baseURL: this._url,
   });
