@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/business/auth.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,11 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
+  
 
   onSubmit() {
+ 
     this.authService.login(this.username, this.password).subscribe(
       (response) => {
         console.log('Logged in successfully');
@@ -21,6 +24,9 @@ export class LoginComponent {
         console.log(response.token);
         localStorage.setItem('authToken', response.token);
         localStorage.setItem('userId', response.userId.toString());
+        this.router.navigate(['/register']);
+
+        
         //To retrieve the token later:
         //const authToken = localStorage.getItem('authToken');
       },
@@ -30,4 +36,7 @@ export class LoginComponent {
       }
     );
   }
+  isOnRegisterPage(): boolean {
+    return this.router.url.includes('/register');
+}
 }

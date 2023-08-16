@@ -1,20 +1,17 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">My App</a>
+    <a class="navbar-brand" routerLink="/" [class.disabled-link]="isOnRegisterPage()">My App</a>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
+        <a class="nav-link" routerLink="/login" [class.disabled-link]="isOnRegisterPage()">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/signup">Sign Up</a>
-      </li>
+          <a class="nav-link" routerLink="/signup" [class.disabled-link]="isOnRegisterPage()">Sign Up</a>
+        </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/register">Register</a>
       </li>
-      <!-- Add other navigation items here -->
     </ul>
   </div>
 </nav>
-
-
 <router-outlet></router-outlet>

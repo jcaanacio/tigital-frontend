@@ -6,16 +6,17 @@ import { RegisterProfileComponent } from './register-profile/register-profile.co
 import { RegisterProfileAuthGuard } from './register-profile-auth.guard';
 
 
+
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'register', component: RegisterProfileComponent,canActivate: [RegisterProfileAuthGuard] },
-  //{ path: 'register-profile', component: RegisterProfileComponent,canActivate: [RegisterProfileAuthGuard]}
+  { path: 'register',component: RegisterProfileComponent,canActivate: [RegisterProfileAuthGuard]},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
