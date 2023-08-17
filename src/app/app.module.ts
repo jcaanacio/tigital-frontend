@@ -8,22 +8,31 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { RegisterProfileComponent } from './register-profile/register-profile.component';
-
+import { RestAuthService } from './services/data-providers/RestAuthService';
+import { REST_AUTH_SERVICE_TOKEN } from './shared/injection-tokens/rest.auth.token';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    RegisterProfileComponent
+    RegisterProfileComponent,
   ],
+<<<<<<< HEAD
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule
+=======
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
+  providers: [
+    {
+      provide: REST_AUTH_SERVICE_TOKEN,
+      useClass: RestAuthService,
+    },
+>>>>>>> 62999c85a26579a45ba0adcb118edba9b5d289d2
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

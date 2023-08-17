@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
+=======
+import { Component } from '@angular/core';
+import { AuthService } from '../services/business/auth.service';
+>>>>>>> 62999c85a26579a45ba0adcb118edba9b5d289d2
 
 @Component({
   selector: 'app-signup',
@@ -11,6 +16,7 @@ import ValidateForm from '../helpers/validateform';
 })
 export class SignupComponent implements OnInit {
 
+<<<<<<< HEAD
   type: string = "password";
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
@@ -22,6 +28,20 @@ export class SignupComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     })
+=======
+  constructor(private authService: AuthService) {}
+
+  onSubmit() {
+    this.authService.signUp(this.username, this.password).subscribe(
+      (response) => {
+        console.log({ response });
+      },
+      (error) => {
+        console.error('Login failed', error);
+        alert(error.message);
+      }
+    );
+>>>>>>> 62999c85a26579a45ba0adcb118edba9b5d289d2
   }
 
   goToRegister(): void {

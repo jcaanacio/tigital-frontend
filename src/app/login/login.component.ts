@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import ValidateForm from '../helpers/validateform';
+=======
+import { Component } from '@angular/core';
+import { AuthService } from '../services/business/auth.service';
+>>>>>>> 62999c85a26579a45ba0adcb118edba9b5d289d2
 
 @Component({
   selector: 'app-login',
@@ -30,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+<<<<<<< HEAD
     if(this.loginForm.valid) {
 
       console.log(this.loginForm.value)
@@ -43,6 +49,23 @@ export class LoginComponent implements OnInit {
       alert("Your form is invalid")
 
     }
+=======
+    this.authService.login(this.username, this.password).subscribe(
+      (response) => {
+        console.log('Logged in successfully');
+        // Handle successful login (e.g., navigate to another page)
+        // After successful login
+        console.log(response.token);
+        localStorage.setItem('authToken', response.token);
+        //To retrieve the token later:
+        //const authToken = localStorage.getItem('authToken');
+      },
+      (error) => {
+        console.error('Login failed', error);
+        alert(error.message);
+      }
+    );
+>>>>>>> 62999c85a26579a45ba0adcb118edba9b5d289d2
   }
 
 
