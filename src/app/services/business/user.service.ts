@@ -1,18 +1,27 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import axios, { AxiosInstance } from 'axios';
+import { Inject, Injectable } from '@angular/core';
+
+import { Observable, from } from 'rxjs';
+import { UserModel } from 'src/app/shared/models/UserModel';
+
+import {
+  ICreateProfileResponse,
+  IProfileDataSource,
+} from '../data-providers/RestProfileService';
+import { REST_PROFILE_SERVICE_TOKEN } from 'src/app/shared/injection-tokens/rest.profile.token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = '/api/v1/users';
-  private axiosInstance: AxiosInstance;
   private token = localStorage.getItem('authToken');
+  constructor(
+    @Inject(REST_PROFILE_SERVICE_TOKEN) private dataProvider: IProfileDataSource
+  ) {}
 
-  constructor(private http: HttpClient) {
-    this.axiosInstance = axios.create({
-      baseURL: this.apiUrl,
-    });
+  register(
+    userId: number,
+    userModel: UserModel
+  ): Observable<ICreateProfileResponse> {
+    return from(this.dataProvider.create(userId, userModel)).pipe();
   }
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/business/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tigital-frontend';
+
+  constructor(private authService: AuthService, private router: Router) {}
+  isOnRegisterPage(): boolean {
+    return this.router.url.includes('/register');
+  }
+  get auth(): AuthService{
+    return this.authService;
+  }
 }
